@@ -1,6 +1,14 @@
 import logo from "public/logo.png";
 import styled from "styled-components";
 import Image from "next/image";
+import { Dispatch, SetStateAction } from "react";
+import { ICharacters } from "@/interfaces";
+import { getCharacters } from "../functions";
+
+function handleSearch() {
+  const characters = getCharacters();
+  console.log(characters);
+}
 
 const Main = styled.aside`
   background: var(--gray-800);
@@ -76,7 +84,11 @@ const Subtitle = styled.p`
   line-height: 1.6rem;
 `;
 
-export default function Sidebar() {
+interface FiltersAreaProps {
+  setCharactersResult: Dispatch<SetStateAction<ICharacters[]>>;
+}
+
+export default function FiltersArea({ setCharactersResult }: FiltersAreaProps) {
   return (
     <Main>
       <Cover
@@ -93,7 +105,7 @@ export default function Sidebar() {
       </Header>
 
       <Footer>
-        <Button>Buscar</Button>
+        <Button onClick={handleSearch}>Buscar</Button>
 
         <Button>Limpar</Button>
       </Footer>

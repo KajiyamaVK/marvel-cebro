@@ -1,6 +1,4 @@
-'use client'
-
-import style from 'styled-components'
+import style from "styled-components";
 
 const Main = style.div`
   background: var(--white);
@@ -14,5 +12,5 @@ export default function Card() {
     <Main>
       <h1>Card</h1>
     </Main>
-  )
+  );
 }

@@ -4,7 +4,7 @@ import { Marvel } from "next/font/google"
 import Topbar from './components/Topbar'
 
 
-export const text = Marvel({
+const text = Marvel({
   subsets: ['latin'],
   weight: ['400', '700'],
 });

@@ -19,6 +19,7 @@ _Esse projeto visa a criação de uma pesquisa dos personagens da Marvel usando 
 
 #### Frameworks e Bibliotecas
 
+<div>
 <img src='/public/Stacks/react.jpg' style='width:80px' alt='ReactJS'>
 <img src='/public/Stacks/nextjs.jpg' style='width:80px' alt='Styled Components'>
 <img src='/public/Stacks/styledComponents.jpg' style='width:80px' alt='Styled Components'>

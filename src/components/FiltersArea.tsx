@@ -6,9 +6,11 @@ import { useSearchContext } from "@/contexts/searchResultsContext";
 import { usePage } from "@/contexts/pageContext";
 import { getCharacters } from "../functions";
 import TextField from "@mui/material/TextField";
+import { ISearchResult } from "@/interfaces";
 
 const Main = styled.aside`
-  background: var(--gray-800);
+  background: var(--background-component-color);
+  color: var(--foreground-color);
   border-radius: 8px;
   margin-top: 4rem;
   border: 4px solid var(--gray-800);
@@ -55,8 +57,8 @@ const Footer = styled.footer`
 `;
 const Button = styled.button`
   background: transparent;
-  color: var(--white);
-  border: 1px solid var(--white);
+  color: var(--foreground-color);
+  border: 1px solid var(--foreground-color);
   border-radius: 8px;
   height: 58px;
   padding: 0 1.5rem;
@@ -77,41 +79,41 @@ const Button = styled.button`
 `;
 
 const Title = styled.h1`
-  color: var(--gray-100);
+  color: var(--foreground-color);
   line-height: 1.6rem;
 `;
 
 const Subtitle = styled.p`
   margin-top: 1rem;
-  color: var(--gray-100);
+  color: var(--foreground-color);
   line-height: 1.6rem;
 `;
-
 const Input = styled(TextField)`
   width: clamp(200px, 80%, 400px);
   margin: 1.5rem;
   .MuiOutlinedInput-root {
     border-radius: 8px;
-    background: var(--gray-700);
-    color: var(--gray-100);
+    background: var(--background-component-color);
+    color: var(--foreground-color);
     &.Mui-focused {
-      background: var(--gray-600);
+      background: var(--background-component-color);
     }
   }
   .MuiOutlinedInput-notchedOutline {
-    border-color: var(--gray-100);
+    border-color: var(--foreground-color);
   }
   .MuiInputLabel-root {
-    color: var(--gray-100);
+    color: var(--foreground-color);
     &.Mui-focused {
-      color: var(--gray-100);
+      color: var(--foreground-color);
     }
   }
   @media (max-width: 768px) {
     width: 80%;
   }
   &:hover .MuiOutlinedInput-notchedOutline {
-    border: 2px solid var(--gray-100);
+    border-width: 2px;
+    border-color: var(--foreground-color);
   }
 `;
 
@@ -130,6 +132,7 @@ export default function FiltersArea({ setPage }: FiltersAreaProps) {
   const { setCharactersResult } = useSearchContext();
 
   async function handleSearch() {
+    setCharactersResult({} as ISearchResult); // Clears the characters array
     setIsLoading(true); // Turns on skeleton loading
     setCurrentEndPoint("" as string);
     const characters = await getCharacters({

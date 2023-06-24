@@ -1,6 +1,6 @@
 # O Cerebro
 
-_Esse projeto visa a criação de uma pesquisa dos personagens da Marvel usando a [Marvel API](developer.marvel.com). A aplicação também está online na **[Vercel](marvel-cebro.vercel.app)**_
+_Esse projeto visa a criaÃ§Ã£o de uma pesquisa dos personagens da Marvel usando a [Marvel API](developer.marvel.com). A aplicaÃ§Ã£o tambÃ©m estÃ¡ online na **[Vercel](marvel-cebro.vercel.app)**_
 
 <div style='display:flex; align-items:center; justify-content:center; margin:40px'>
 <img src='https://logodownload.org/wp-content/uploads/2017/05/marvel-logo-4.png' style='width:500px; ' alt='Styled Components'>
@@ -32,4 +32,4 @@ _Esse projeto visa a criação de uma pesquisa dos personagens da Marvel usando 
 - Normalmente utilizo CSS Modules ou Tailwind, mas como foi utilizado **Styled Components**, a estilização ficou no mesmo arquivo do componente.
 - A responsividade está desenvolvida.
 - Aplicação se encontra online na **[Vercel](marvel-cebro.vercel.app)**.
-- **A maioria dos registros não possuem descrição, portanto, foi colocada animação de access denied**
+- **A maioria dos registros nÃ£o possuem descriÃ§Ã£o, portanto, foi colocada animaÃ§Ã£o de access denied**

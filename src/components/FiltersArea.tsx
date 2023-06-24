@@ -2,35 +2,23 @@ import logo from "public/logo.png";
 import styled from "styled-components";
 import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
-import { ICharacters } from "@/interfaces";
+import { useSearchContext } from "@/contexts/searchResultsContext";
+import { usePage } from "@/contexts/pageContext";
 import { getCharacters } from "../functions";
-
-function handleSearch() {
-  const characters = getCharacters();
-  console.log(characters);
-}
 
 const Main = styled.aside`
   background: var(--gray-800);
   border-radius: 8px;
-  overflow: hidden;
+  margin-top: 4rem;
   border: 4px solid var(--gray-800);
   outline: 2px solid var(--white);
 `;
 
 const Logo = styled(Image)`
   box-sizing: initial;
-  width: 3rem;
-  height: 3rem;
+  width: 8rem;
+  height: 8rem;
   border-radius: 8px;
-  border: 4px solid var(--gray-800);
-  outline: 2px solid var(--green-500);
-`;
-
-const Cover = styled(Image)`
-  width: 100%;
-  height: 72px;
-  object-fit: cover;
 `;
 
 const Header = styled.div`
@@ -39,6 +27,9 @@ const Header = styled.div`
   padding: 0 1rem;
   align-items: center;
   margin-top: calc(0px - 1.5rem - 6px);
+  z-index: 1;
+  bottom: 30px;
+  position: relative;
 `;
 
 const Footer = styled.footer`
@@ -73,7 +64,6 @@ const Button = styled.button`
 `;
 
 const Title = styled.h1`
-  margin-top: 1rem;
   color: var(--gray-100);
   line-height: 1.6rem;
 `;
@@ -85,18 +75,26 @@ const Subtitle = styled.p`
 `;
 
 interface FiltersAreaProps {
-  setCharactersResult: Dispatch<SetStateAction<ICharacters[]>>;
+  setPage: Dispatch<SetStateAction<number>>;
 }
 
-export default function FiltersArea({ setCharactersResult }: FiltersAreaProps) {
+export default function FiltersArea({ setPage }: FiltersAreaProps) {
+  const { setIsInitialLoad, setIsLoading } = usePage();
+  const { setCharactersResult } = useSearchContext();
+
+  async function handleSearch() {
+    setIsLoading(true);
+    const characters = await getCharacters();
+    setIsLoading(false);
+    console.log(characters);
+    setIsInitialLoad(false);
+
+    setCharactersResult(characters);
+    setPage(1);
+  }
+
   return (
     <Main>
-      <Cover
-        src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=50"
-        alt="cover"
-        width={100}
-        height={100}
-      />
       <Header>
         <Logo src={logo} alt="Image of Cerebro" />
 

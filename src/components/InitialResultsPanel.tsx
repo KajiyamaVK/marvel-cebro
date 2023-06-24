@@ -12,14 +12,6 @@ const Title = styled.h2`
   padding: 1rem;
 `;
 
-const Cerebro = styled(Image)`
-  margin: 0 auto;
-  display: block;
-  opacity: 1;
-  width: 100%;
-  height: auto;
-`;
-
 const Text = styled.p`
   padding: 1rem;
   font-size: 1.25rem;
@@ -31,13 +23,17 @@ export default function InitialResultsPanel() {
   return (
     <Main>
       <Title>O Cerebro</Title>
-      <Cerebro src={cerebroImg} alt="Cerebro" />
+      <Image
+        src={cerebroImg}
+        alt="Cerebro"
+        style={{ objectFit: "contain", width: "100%", height: "100%" }}
+      />
       <Text>
-        {'"'}Cerebro... a criação do Xavier. Uma máquina capaz de detectar
+        {'"'}Cérebro… a criação do Xavier. Uma máquina capaz de detectar
         indivíduos em todo o mundo. Com ela, Xavier pode encontrar e recrutar
         novos membros para seus X-Men. Mas também pode ser usada para localizar
         seus inimigos. É uma arma poderosa nas mãos de um telepata experiente
-        como Xavier. Mas nas mãos erradas... pode ser uma ameaça para todos os
+        como Xavier. Mas nas mãos erradas… pode ser uma ameaça para todos os
         mutantes.{'"'}
         <br />
         <br />

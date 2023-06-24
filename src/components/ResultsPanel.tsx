@@ -16,6 +16,7 @@ const Main = styled.div`
   background: var(--background-component-color);
   border-radius: 8px;
   padding: 2.5rem;
+  max-width: 1000px;
 `;
 
 const CardsList = styled.div`

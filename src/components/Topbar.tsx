@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import logo from "/public/logo.png";
-import Image from "next/image";
 
 const Container = styled.div`
   background: var(--gray-800);
@@ -15,8 +13,7 @@ const Container = styled.div`
 export default function Topbar() {
   return (
     <Container>
-      <Image src={logo} alt="Marvel Cerebro" width={32} height={32} />
-      <p>Marvel Cerebro</p>
+      <p>O Cerebro</p>
     </Container>
   );
 }

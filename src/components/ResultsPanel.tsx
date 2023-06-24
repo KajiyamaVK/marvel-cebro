@@ -1,6 +1,16 @@
 import styled from "styled-components";
+import { useEffect, useState } from "react";
 import Card from "./Card";
+import { ISearchResult } from "@/interfaces";
+import { Dispatch, SetStateAction } from "react";
+import Pagination from "@mui/material/Pagination";
+import { getCharacters } from "@/functions";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { useCharacters } from "@/contexts/charactersContext";
 import { ICharacters } from "@/interfaces";
+import { usePage } from "@/contexts/pageContext";
+import { useSearchContext } from "@/contexts/searchResultsContext";
 
 const Main = styled.div`
   background: var(--gray-800);
@@ -11,6 +21,7 @@ const Main = styled.div`
 const CardsList = styled.div`
   padding: 2rem 0;
   display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
 `;
 
@@ -19,18 +30,96 @@ const Title = styled.h2`
 `;
 
 interface ResultsPanelProps {
-  charactersResult: ICharacters[];
+  page: number;
+  setPage: Dispatch<SetStateAction<number>>;
 }
 
-export default function ResultsPanel({ charactersResult }: ResultsPanelProps) {
+export default function ResultsPanel({ page, setPage }: ResultsPanelProps) {
+  const [pageCount, setPageCount] = useState(0);
+  const { isLoading } = usePage();
+  const { charactersResult, setCharactersResult } = useSearchContext();
+
+  const { setCharacterData } = useCharacters();
+
+  useEffect(() => {
+    if (charactersResult) {
+      const pageCount = Math.ceil(charactersResult.total / 20);
+      setPageCount(pageCount);
+    }
+  }, [charactersResult]);
+
+  async function handlePageChange(
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ) {
+    console.log("page", value);
+    setPage(value);
+    const characters = await getCharacters(value * 10);
+    setCharactersResult(characters);
+  }
+
   return (
     <Main>
-      <Title>Super humanos encontrados:</Title>
-      <CardsList>
-        <Card />
-        <Card />
-        <Card />
-      </CardsList>
+      <div>
+        <Title>
+          Foram encontrados {charactersResult?.total || "-"} super humanos
+        </Title>
+        <Pagination
+          count={pageCount}
+          variant="outlined"
+          shape="rounded"
+          page={page}
+          onChange={handlePageChange}
+          sx={{
+            "& .MuiPaginationItem-root": {
+              color: "#ffffff",
+            },
+            "& .MuiPaginationItem-root.Mui-selected": {
+              backgroundColor: "white",
+              color: "var(--gray-900)",
+            },
+            "& .MuiPaginationItem-root.Mui-selected:hover": {
+              backgroundColor: "var(--white)",
+              color: "var(--gray-900)",
+            },
+            "& .MuiPaginationItem-root:hover": {
+              backgroundColor: "var(--white)",
+              color: "var(--gray-900)",
+            },
+            margin: "1rem auto",
+            width: "fit-content",
+          }}
+        />
+      </div>
+
+      {charactersResult && charactersResult.results && (
+        <CardsList>
+          {charactersResult.results.map((character: ICharacters) => (
+            <div
+              key={character.id}
+              onClick={() => {
+                setCharacterData(character);
+              }}
+            >
+              <Card {...character} />
+            </div>
+          ))}
+        </CardsList>
+      )}
+      {isLoading && (
+        <CardsList>
+          {Array(20)
+            .fill(0)
+            .map((_, index) => (
+              <Skeleton
+                key={index}
+                style={{ borderRadius: "8px" }}
+                height={300}
+                width={200}
+              />
+            ))}
+        </CardsList>
+      )}
     </Main>
   );
 }

@@ -1,6 +1,6 @@
 # O Cerebro
 
-_Esse projeto visa a criaÃ§Ã£o de uma pesquisa dos personagens da Marvel usando a [Marvel API](developer.marvel.com). A aplicaÃ§Ã£o tambÃ©m estÃ¡ online na **[Vercel](marvel-cebro.vercel.app)**_
+_Esse projeto visa a criação de uma pesquisa dos personagens da Marvel usando a [Marvel API](developer.marvel.com). A aplicação também está online na **[Vercel](marvel-cebro.vercel.app)**_
 
 <div style='display:flex; align-items:center; justify-content:center; margin:40px'>
 <img src='https://logodownload.org/wp-content/uploads/2017/05/marvel-logo-4.png' style='width:500px; ' alt='Styled Components'>

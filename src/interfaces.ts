@@ -11,6 +11,7 @@ export interface ICharacters {
 }
 
 export interface ISearchResult {
+  endpoint: string;
   count: number;
   offset: number;
   total: number;

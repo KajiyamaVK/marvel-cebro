@@ -13,6 +13,14 @@ const Main = style.div`
   cursor: pointer;
   overflow: hidden;
   position: relative;
+  filter:grayscale(100%);
+  transition: filter 0.5s;
+
+  &:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s;
+    filter:none;
+  }
 `;
 
 const Description = style(Paper)`
@@ -26,11 +34,15 @@ const Description = style(Paper)`
   opacity: 0.8;
 `;
 
+const Photo = style(Image)`
+
+`;
+
 export default function Card(character: ICharacters) {
   return (
     <Main>
       {character.thumbnail.path && character.thumbnail.extension ? (
-        <Image
+        <Photo
           src={character.thumbnail.path + "." + character.thumbnail.extension}
           alt={character.name}
           width={200}

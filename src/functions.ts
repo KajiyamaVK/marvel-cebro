@@ -1,20 +1,38 @@
 import { ISearchResult } from "./interfaces";
 import { ICharacters } from "./interfaces";
+interface IGetCharacters {
+  offset?: number;
+  nameInput?: string;
+  currentEndPoint?: string;
+}
 
-export async function getCharacters(
-  offset: number = 0
-): Promise<ISearchResult> {
-  const { data } = await fetch(
-    `https://gateway.marvel.com:443/v1/public/characters?apikey=${process.env.NEXT_PUBLIC_APIKEY}&offset=${offset}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  ).then((response) => response.json());
+export async function getCharacters({
+  offset,
+  nameInput,
+  currentEndPoint,
+}: IGetCharacters = {}): Promise<ISearchResult> {
+  const ts = new Date().getTime();
+  let url: string;
+
+  if (currentEndPoint === "") {
+    url = nameInput
+      ? `https://gateway.marvel.com:443/v1/public/characters?ts=${ts}&apikey=${process.env.NEXT_PUBLIC_APIKEY}&offset=${offset}&nameStartsWith=%${nameInput}%`
+      : `https://gateway.marvel.com:443/v1/public/characters?ts=${ts}&apikey=${process.env.NEXT_PUBLIC_APIKEY}&offset=${offset}`;
+  } else {
+    url = `${currentEndPoint!.replace(/&offset=[^&]*/g, "")}&offset=${offset}`;
+  }
+
+  console.log("url", url);
+
+  const { data } = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((response) => response.json());
 
   const searchResult: ISearchResult = {
+    endpoint: url,
     count: data.count,
     offset: data.offset,
     total: data.total,
@@ -28,8 +46,6 @@ export async function getCharacters(
       },
     })),
   };
-
-  console.log(searchResult);
 
   return searchResult;
 }

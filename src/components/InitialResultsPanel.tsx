@@ -30,7 +30,7 @@ const Text = styled.p`
 export default function InitialResultsPanel() {
   return (
     <Main>
-      <Title>O Cérebro</Title>
+      <Title>O Cerebro</Title>
       <Cerebro src={cerebroImg} alt="Cerebro" />
       <Text>
         {'"'}Cerebro... a criação do Xavier. Uma máquina capaz de detectar

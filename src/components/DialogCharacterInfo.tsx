@@ -6,7 +6,6 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
-import { Dispatch, SetStateAction } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { ICharacters } from "@/interfaces";
 import { useCharacters } from "@/contexts/charactersContext";

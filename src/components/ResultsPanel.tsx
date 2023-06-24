@@ -21,6 +21,7 @@ const Main = styled.div`
 const CardsList = styled.div`
   padding: 2rem 0;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 2rem;
 `;
@@ -36,7 +37,7 @@ interface ResultsPanelProps {
 
 export default function ResultsPanel({ page, setPage }: ResultsPanelProps) {
   const [pageCount, setPageCount] = useState(0);
-  const { isLoading } = usePage();
+  const { isLoading, setIsLoading } = usePage();
   const { charactersResult, setCharactersResult } = useSearchContext();
 
   const { setCharacterData } = useCharacters();
@@ -50,20 +51,23 @@ export default function ResultsPanel({ page, setPage }: ResultsPanelProps) {
 
   async function handlePageChange(
     event: React.ChangeEvent<unknown>,
-    value: number
+    pageNumber: number
   ) {
-    console.log("page", value);
-    setPage(value);
-    const characters = await getCharacters(value * 10);
+    setIsLoading(true); // Turns on skeleton loading
+    setPage(pageNumber);
+
+    const characters = await getCharacters({
+      offset: pageNumber === 1 ? 0 : pageNumber * 10,
+      currentEndPoint: charactersResult?.endpoint,
+    });
     setCharactersResult(characters);
+    setIsLoading(false);
   }
 
   return (
     <Main>
       <div>
-        <Title>
-          Foram encontrados {charactersResult?.total || "-"} super humanos
-        </Title>
+        <Title>Foram encontrados {charactersResult?.total} super humanos</Title>
         <Pagination
           count={pageCount}
           variant="outlined"

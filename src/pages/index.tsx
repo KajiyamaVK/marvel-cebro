@@ -18,6 +18,9 @@ const Wrapper = styled.div`
   grid-template-columns: 256px 1fr;
   gap: 2rem;
   align-items: flex-start;
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
 `;
 
 export default function Home() {

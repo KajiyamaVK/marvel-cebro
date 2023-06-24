@@ -1,10 +1,11 @@
 import logo from "public/logo.png";
 import styled from "styled-components";
 import Image from "next/image";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { useSearchContext } from "@/contexts/searchResultsContext";
 import { usePage } from "@/contexts/pageContext";
 import { getCharacters } from "../functions";
+import TextField from "@mui/material/TextField";
 
 const Main = styled.aside`
   background: var(--gray-800);
@@ -12,6 +13,18 @@ const Main = styled.aside`
   margin-top: 4rem;
   border: 4px solid var(--gray-800);
   outline: 2px solid var(--white);
+  width: 16rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    border: none;
+    outline: none;
+  }
 `;
 
 const Logo = styled(Image)`
@@ -74,23 +87,61 @@ const Subtitle = styled.p`
   line-height: 1.6rem;
 `;
 
+const Input = styled(TextField)`
+  width: clamp(200px, 80%, 400px);
+  margin: 1.5rem;
+  .MuiOutlinedInput-root {
+    border-radius: 8px;
+    background: var(--gray-700);
+    color: var(--gray-100);
+    &.Mui-focused {
+      background: var(--gray-600);
+    }
+  }
+  .MuiOutlinedInput-notchedOutline {
+    border-color: var(--gray-100);
+  }
+  .MuiInputLabel-root {
+    color: var(--gray-100);
+    &.Mui-focused {
+      color: var(--gray-100);
+    }
+  }
+  @media (max-width: 768px) {
+    width: 80%;
+  }
+  &:hover .MuiOutlinedInput-notchedOutline {
+    border: 2px solid var(--gray-100);
+  }
+`;
+
 interface FiltersAreaProps {
   setPage: Dispatch<SetStateAction<number>>;
 }
 
 export default function FiltersArea({ setPage }: FiltersAreaProps) {
-  const { setIsInitialLoad, setIsLoading } = usePage();
+  const {
+    setIsInitialLoad,
+    setIsLoading,
+    setCurrentEndPoint,
+    currentEndPoint,
+  } = usePage();
+  const [nameInput, setNameInput] = useState("" as string);
   const { setCharactersResult } = useSearchContext();
 
   async function handleSearch() {
-    setIsLoading(true);
-    const characters = await getCharacters();
-    setIsLoading(false);
-    console.log(characters);
-    setIsInitialLoad(false);
+    setIsLoading(true); // Turns on skeleton loading
+    setCurrentEndPoint("" as string);
+    const characters = await getCharacters({
+      offset: 0,
+      nameInput: nameInput,
+      currentEndPoint: currentEndPoint,
+    });
 
-    setCharactersResult(characters);
+    setIsLoading(false);
+    setIsInitialLoad(false); // Removes the cerebro initial page
     setPage(1);
+    setCharactersResult(characters);
   }
 
   return (
@@ -101,11 +152,19 @@ export default function FiltersArea({ setPage }: FiltersAreaProps) {
         <Title>Filtros</Title>
         <Subtitle>Preencha os atributos abaixo e clique em procurar</Subtitle>
       </Header>
-
+      <Input
+        variant="outlined"
+        label="Buscar pelo nome"
+        value={nameInput}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          setNameInput(event.target.value)
+        }
+        onKeyDown={(event: React.KeyboardEvent<HTMLInputElement>) => {
+          if (event.key === "Enter") handleSearch();
+        }}
+      />
       <Footer>
         <Button onClick={handleSearch}>Buscar</Button>
-
-        <Button>Limpar</Button>
       </Footer>
     </Main>
   );

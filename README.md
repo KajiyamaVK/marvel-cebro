@@ -1,6 +1,6 @@
 # O Cerebro
 
-_Esse projeto visa a criação de uma pesquisa dos personagens da Marvel usando a [Marvel API](developer.marvel.com). A aplicação também está online na **[Vercel](marvel-cebro.vercel.app)**_
+_Esse projeto visa a criação de uma pesquisa dos personagens da Marvel usando a [Marvel API](developer.marvel.com). A aplicação também está online na **[Vercel](marvel-cebro.vercel.app)**_ (sim, me perdoe - o nome está errado lá). Também se encontra disponível uma imagem no Docker **(kajiyamavk/marvel-cerebro)**
 
 <div style='display:flex; align-items:center; justify-content:center; margin:40px'>
 <img src='https://logodownload.org/wp-content/uploads/2017/05/marvel-logo-4.png' style='width:500px; ' alt='Styled Components'>
@@ -23,6 +23,14 @@ _Esse projeto visa a criação de uma pesquisa dos personagens da Marvel usando 
 <img src='/public/Stacks/react.jpg' style='width:80px' alt='ReactJS'>
 <img src='/public/Stacks/nextjs.jpg' style='width:80px' alt='Styled Components'>
 <img src='/public/Stacks/styledComponents.jpg' style='width:80px' alt='Styled Components'>
+
+</div>
+
+#### Techs e ferramentas
+
+<div>
+<img src='/public/Stacks/docker.png' style='width:80px' alt='Docker'>
+<img src='/public/Stacks/github.jpg' style='width:80px' alt='Github'>
 
 </div>
 

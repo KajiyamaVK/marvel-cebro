@@ -1,6 +1,6 @@
 //Component that the user can use to filter the characters by name
 
-import logo from "public/logo.png";
+import logo from "/public/logo.png";
 import styled from "styled-components";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useState } from "react";

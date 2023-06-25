@@ -36,7 +36,7 @@ interface ResultsPanelProps {
 }
 
 export default function ResultsPanel({ page, setPage }: ResultsPanelProps) {
-  const [pageCount, setPageCount] = useState(0);
+  const [pageCount, setPageCount] = useState(1);
   const { isLoading, setIsLoading } = usePage();
   const { charactersResult, setCharactersResult } = useSearchContext();
 

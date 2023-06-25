@@ -26,6 +26,13 @@ const Main = style.div`
     transition: transform 0.2s;
     filter:none;
   }
+
+  @media (max-width: 768px) {
+    filter:none;
+    &:hover {
+      transform: none;
+    }
+  }
 `;
 
 const Description = style(Paper)`

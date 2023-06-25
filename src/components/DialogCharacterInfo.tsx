@@ -16,6 +16,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import { ICharacters } from "@/interfaces";
 import { useCharacters } from "@/contexts/charactersContext";
 import accessDenied from "/public/accessDenied.gif";
+import { Marvel } from "next/font/google";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -25,6 +26,11 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }));
+
+const text = Marvel({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
 
 export interface DialogTitleProps {
   id: string;
@@ -95,7 +101,9 @@ export default function DialogCharacterInfo({
         </BootstrapDialogTitle>
         <DialogContent dividers>
           {data?.description ? (
-            <p>{data.description}</p>
+            <p className={text.className} style={{ fontSize: "1.3rem" }}>
+              {data.description}
+            </p>
           ) : (
             <Image
               src={accessDenied}

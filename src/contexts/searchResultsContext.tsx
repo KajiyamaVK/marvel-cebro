@@ -1,3 +1,5 @@
+// Holds the results of the search.
+
 import {
   useContext,
   Dispatch,

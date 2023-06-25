@@ -1,3 +1,5 @@
+// This is the initial results panel that is shown when the user first enters the app.
+
 import styled from "styled-components";
 import cerebroImg from "/public/cerebro.png";
 import Image from "next/image";

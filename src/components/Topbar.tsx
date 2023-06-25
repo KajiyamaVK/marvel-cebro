@@ -1,3 +1,5 @@
+// The topbar component that is shown on the top of the page.
+
 import styled from "styled-components";
 
 const Container = styled.div`

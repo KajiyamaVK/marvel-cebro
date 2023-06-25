@@ -1,3 +1,8 @@
+/**
+ * A component that displays a character card with their name, image, and description.
+ *
+ */
+
 import style from "styled-components";
 import Image from "next/image";
 import { ICharacters } from "@/interfaces";
@@ -58,3 +63,5 @@ export default function Card(character: ICharacters) {
     </Main>
   );
 }
+
+Card.displayName = "CharacterCard";

@@ -1,3 +1,5 @@
+//Component that the user can use to filter the characters by name
+
 import logo from "public/logo.png";
 import styled from "styled-components";
 import Image from "next/image";
@@ -121,6 +123,8 @@ interface FiltersAreaProps {
   setPage: Dispatch<SetStateAction<number>>;
 }
 
+// If we don't use this, the variant prop will be passed to the DOM element
+// this will cause a warning in the console (not an error, though)
 const shouldForwardProp = (prop: string) => prop !== "variant";
 
 export default function FiltersArea({ setPage }: FiltersAreaProps) {
@@ -136,7 +140,7 @@ export default function FiltersArea({ setPage }: FiltersAreaProps) {
   async function handleSearch() {
     setCharactersResult({} as ISearchResult); // Clears the characters array
     setIsLoading(true); // Turns on skeleton loading
-    setCurrentEndPoint("" as string);
+    setCurrentEndPoint("" as string); // Resets the previous endpoint. This is necessary to use the following "getCharacters" function
     const characters = await getCharacters({
       offset: 0,
       nameInput: nameInput,
@@ -145,7 +149,7 @@ export default function FiltersArea({ setPage }: FiltersAreaProps) {
 
     setIsLoading(false);
     setIsInitialLoad(false); // Removes the cerebro initial page
-    setPage(1);
+    setPage(1); // Sets the page to 1 on the pagination
     setCharactersResult(characters);
   }
 

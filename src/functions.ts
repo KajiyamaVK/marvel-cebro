@@ -6,6 +6,7 @@ interface IGetCharacters {
   currentEndPoint?: string;
 }
 
+//Searches for characters in the Marvel API
 export async function getCharacters({
   offset,
   nameInput,

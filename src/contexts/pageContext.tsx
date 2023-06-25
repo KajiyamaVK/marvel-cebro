@@ -1,3 +1,7 @@
+// The Page Context holds the state of the page, such as the current endpoint,
+//if the page is loading, etc. "Page" here refers to the page that is being
+// the actual app page itself. It's not about pagination or something like it
+
 import {
   useContext,
   Dispatch,
@@ -16,11 +20,11 @@ interface IPageContext {
 }
 
 export const pageContext = createContext<IPageContext>({
-  isLoading: false,
+  isLoading: false, // The page is loading. This controls the skeleton loading
   setIsLoading: () => {},
-  isInitialLoad: true,
+  isInitialLoad: true, // The page is the initial page. This controls the cerebro initial page
   setIsInitialLoad: () => {},
-  currentEndPoint: "",
+  currentEndPoint: "", // The current endpoint. This keeps strack of the current endpoint so the paginations doesn't lose information mixing other endpoints
   setCurrentEndPoint: () => {},
 });
 

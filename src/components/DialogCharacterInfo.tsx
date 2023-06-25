@@ -1,3 +1,9 @@
+/**
+ * Component that contains the dialog with the character's information that shows when the user
+ * clicks on a character card.
+ *
+ */
+
 import Image from "next/image";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
@@ -107,3 +113,5 @@ export default function DialogCharacterInfo({
     </div>
   );
 }
+
+DialogCharacterInfo.displayName = "DialogCharacterInfo";

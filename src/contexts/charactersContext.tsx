@@ -1,3 +1,5 @@
+// Holds the information of the character selected individualy on the click action.
+
 import {
   createContext,
   useContext,

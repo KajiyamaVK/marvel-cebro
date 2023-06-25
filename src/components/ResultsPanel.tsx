@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import Card from "./Card";
-import { ISearchResult } from "@/interfaces";
 import { Dispatch, SetStateAction } from "react";
 import Pagination from "@mui/material/Pagination";
 import { getCharacters } from "@/functions";

@@ -28,6 +28,7 @@ export default function InitialResultsPanel() {
       <Image
         src={cerebroImg}
         alt="Cerebro"
+        priority={true}
         style={{ objectFit: "contain", width: "100%", height: "100%" }}
       />
       <Text>

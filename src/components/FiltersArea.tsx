@@ -9,6 +9,8 @@ import { usePage } from "@/contexts/pageContext";
 import { getCharacters } from "../functions";
 import TextField from "@mui/material/TextField";
 import { ISearchResult } from "@/interfaces";
+import { StyleSheetManager } from "styled-components";
+import isPropValid from "@emotion/is-prop-valid";
 
 const Main = styled.aside`
   background: var(--background-component-color);
@@ -123,10 +125,6 @@ interface FiltersAreaProps {
   setPage: Dispatch<SetStateAction<number>>;
 }
 
-// If we don't use this, the variant prop will be passed to the DOM element
-// this will cause a warning in the console (not an error, though)
-const shouldForwardProp = (prop: string) => prop !== "variant";
-
 export default function FiltersArea({ setPage }: FiltersAreaProps) {
   const {
     setIsInitialLoad,
@@ -154,27 +152,30 @@ export default function FiltersArea({ setPage }: FiltersAreaProps) {
   }
 
   return (
-    <Main>
-      <Header>
-        <Logo src={logo} alt="Image of Cerebro" />
+    <StyleSheetManager shouldForwardProp={isPropValid}>
+      <Main>
+        <Header>
+          <Logo src={logo} alt="Image of Cerebro" />
 
-        <Title>Filtros</Title>
-        <Subtitle>Preencha os atributos abaixo e clique em procurar</Subtitle>
-      </Header>
-      <Input
-        variant="outlined"
-        label="Buscar pelo nome"
-        value={nameInput}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-          setNameInput(event.target.value)
-        }
-        onKeyDown={(event: React.KeyboardEvent<HTMLInputElement>) => {
-          if (event.key === "Enter") handleSearch();
-        }}
-      />
-      <Footer>
-        <Button onClick={handleSearch}>Buscar</Button>
-      </Footer>
-    </Main>
+          <Title>Filtros</Title>
+          <Subtitle>Preencha os atributos abaixo e clique em procurar</Subtitle>
+        </Header>
+        <Input
+          variant="outlined"
+          label="Buscar pelo nome"
+          value={nameInput}
+          placeholder="Digite o nome do personagem"
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setNameInput(event.target.value)
+          }
+          onKeyDown={(event: React.KeyboardEvent<HTMLInputElement>) => {
+            if (event.key === "Enter") handleSearch();
+          }}
+        />
+        <Footer>
+          <Button onClick={handleSearch}>Buscar</Button>
+        </Footer>
+      </Main>
+    </StyleSheetManager>
   );
 }

@@ -8,7 +8,6 @@ import {
   createContext,
 } from "react";
 import { ISearchResult } from "@/interfaces";
-import { ICharacters } from "@/interfaces";
 
 interface ISearchResultContext {
   charactersResult: ISearchResult;

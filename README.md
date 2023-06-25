@@ -32,4 +32,5 @@ _Esse projeto visa a criação de uma pesquisa dos personagens da Marvel usando 
 - Normalmente utilizo CSS Modules ou Tailwind, mas como foi utilizado **Styled Components**, a estilização ficou no mesmo arquivo do componente.
 - A responsividade está desenvolvida.
 - Aplicação se encontra online na **[Vercel](marvel-cebro.vercel.app)**.
+- Seguindo as boas práticas dos nomes e comentários serem em inglês.
 - **A maioria dos registros não possuem descrição, portanto, foi colocada animação de access denied**

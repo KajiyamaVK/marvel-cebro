@@ -1,6 +1,7 @@
 // The topbar component that is shown on the top of the page.
 
 import styled from "styled-components";
+import Link from "next/link";
 
 const Container = styled.div`
   background: var(--background-component-color);
@@ -16,7 +17,9 @@ const Container = styled.div`
 export default function Topbar() {
   return (
     <Container>
-      <p>O Cerebro</p>
+      <Link href="/">
+        <p>O Cerebro</p>
+      </Link>
     </Container>
   );
 }

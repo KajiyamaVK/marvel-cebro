@@ -121,6 +121,8 @@ interface FiltersAreaProps {
   setPage: Dispatch<SetStateAction<number>>;
 }
 
+const shouldForwardProp = (prop: string) => prop !== "variant";
+
 export default function FiltersArea({ setPage }: FiltersAreaProps) {
   const {
     setIsInitialLoad,

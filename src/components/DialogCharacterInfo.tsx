@@ -9,6 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import { IoCloseSharp } from "react-icons/io5";
 import { ICharacters } from "@/interfaces";
 import { useCharacters } from "@/contexts/charactersContext";
+import accessDenied from "/public/accessDenied.gif";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -91,10 +92,9 @@ export default function DialogCharacterInfo({
             <p>{data.description}</p>
           ) : (
             <Image
-              src="/accessDenied.gif"
+              src={accessDenied}
               alt="Access denied"
-              width={500}
-              height={500}
+              style={{ objectFit: "contain", width: "90%", height: "90%" }}
             />
           )}
         </DialogContent>

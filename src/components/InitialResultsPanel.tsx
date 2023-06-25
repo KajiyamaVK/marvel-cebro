@@ -3,7 +3,7 @@ import cerebroImg from "/public/cerebro.png";
 import Image from "next/image";
 
 const Main = styled.div`
-  background: var(--gray-800);
+  background: var(--background-component-color);
   border-radius: 8px;
 `;
 

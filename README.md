@@ -44,5 +44,5 @@ _Esse projeto visa a criação de uma pesquisa dos personagens da Marvel usando 
 - Imagem disponível no **Docker** - kajiyamavk/marvel-cerebro:1.0
 - Seguindo as boas práticas dos nomes e comentários serem em inglês.
 - No enunciado diziam para serem criadas 3 telas, porém, pela simplicidade do projeto, foram criados 3 componentes, porém, isso é uma mudança que eu questionaria ao designer antes de fazer.
-- Pelo não uso de ISR/SSG/SSR ou Routing, eu poderia ter deixado o NextJS e ter aplicado o ReactJS apenas. Mas o framework foi aplicado por não aumentar a complexidade, e pelo uso da tag /<Image/>.
+- Pelo não uso de ISR/SSG/SSR ou Routing, eu poderia ter deixado o NextJS e ter aplicado o ReactJS apenas. Mas o framework foi aplicado por não aumentar a complexidade, e pelo uso da tag &lt;Image&gt;.
 - **A maioria dos registros não possuem descrição, portanto, foi colocada animação de access denied**
